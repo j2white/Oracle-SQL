@@ -17,7 +17,7 @@ base as (
 ------------------------------------------------
 select
 b.phone_number,
-trim(leading 0 from (regexp_replace(b.phone_number,'[^0-9A-Za-z]|0+|9999999999', ''))) AS clean_phone
+trim(leading 0 from (regexp_replace(b.phone_number,'[^0-9A-Za-z]|0+|9999999999', '')) AS clean_phone
 
 from
 base b
