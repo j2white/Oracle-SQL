@@ -1,17 +1,20 @@
 /* generate various dates based on today's date */
 
 select
-sysdate,
-add_months(sysdate,-6) as minus_6_month_from_today,
-to_char(trunc(last_day(add_months(sysdate,-1))+1),'yyyy-mm-dd HH24:MI') as first_d_month,
-last_day(sysdate) as last_d_month,
+sysdate as today,
 trunc(sysdate-1) as yesterday,
-last_day(add_months(sysdate,-1)) as last_day_prior_month,
-add_months(trunc(last_day(add_months(sysdate,-1))+1),-1) as start_1_months_ago,
-last_day(add_months(trunc(last_day(add_months(sysdate,-1))+1),-1)) as end_1_months_ago,
-add_months(trunc(last_day(add_months(sysdate,-1))+1),-2) as start_2_months_ago,
-last_day(add_months(trunc(last_day(add_months(sysdate,-1))+1),-2)) as end_2_months_ago,
-add_months(trunc(last_day(add_months(sysdate,-1))+1),-3) as start_3_months_ago,
-last_day(add_months(trunc(last_day(add_months(sysdate,-1))+1),-3)) as end_3_months_ago
+trunc(sysdate,'day') as curr_week_start,
+trunc(sysdate,'day') + 6 as curr_week_end,
+to_date(trunc(last_day(add_months(sysdate,-1))+1),'yyyy-mm-dd') as first_curr_month,
+last_day(sysdate) as last_curr_month,
+add_months(trunc(last_day(add_months(sysdate,-1))+1),-1) as first_prior_month,
+last_day(add_months(sysdate,-1)) as last_prior_month,
+add_months(trunc(last_day(add_months(sysdate,-1))+1),-2) as first_prior_two_month,
+last_day(add_months(trunc(last_day(add_months(sysdate,-1))+1),-2)) as last_prior_two_month,
+add_months(trunc(last_day(add_months(sysdate,-1))+1),-3) as first_prior_three_month,
+last_day(add_months(trunc(last_day(add_months(sysdate,-1))+1),-3)) as last_prior_three_month,
+add_months(sysdate,-6) as six_months_before_today,
+to_char(sysdate, 'yyyy-mm-dd hh24:mi:ss') as load
 
-from dual
+from 
+dual
